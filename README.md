@@ -19,4 +19,4 @@ Contains references to: Bootstrap 4, Bootstrap Icons, Axios, Vue.js
 |searchId| Id used for AxiosGetById method| |
 |statusMessage| Property for display messages, e.g. "Deleted"| |
 
-
+Renaming in VS Code: Select an accurrence of a property/variable, CTRL+F2, type name, press Enter
