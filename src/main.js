@@ -5,9 +5,9 @@ const app = Vue.createApp({
             greeting: "Hello World!",
 
             // Properties for API
-            apiBaseUrl: "", // TODO: add base url, incl. trailing /
-            apiResponseObject1: {}, // TODO: rename 
-            apiNewObject: {}, // TODO: rename, evtl. add properties
+            apiBaseUrl: "https://webapicar20190326034339.azurewebsites.net/api/cars", // TODO: add base url, incl. trailing /
+            apiResponseObject: [], // TODO: rename 
+            apiNewObject: null, // TODO: rename, evtl. add properties
             deleteId: 0, 
             searchId: 0,
             statusMessage: ""
@@ -18,17 +18,18 @@ const app = Vue.createApp({
     },
     methods: {
         AxiosGet: function () {
-            axios.get(baseUrl)
-            .then(response => {
+            axios.get(this.apiBaseUrl)
+            .then(response => {                
                 this.apiResponseObject = response.data
-                // console.log(response.data)
+                console.log(response.status)
+                console.log(response.data)
             })
             .catch(function(error){
                 console.log(error)
             })
         },
         AxiosGetById: function () {
-            axios.get(this.baseUrl + this.searchId)
+            axios.get(this.apiBaseUrl + this.searchId)
             .then(response=>{
                 console.log(response.status)
                 console.log(response.data) // for debugging              
@@ -40,7 +41,7 @@ const app = Vue.createApp({
             })            
         },
         AxiosPost: function(){
-            axios.post(baseUrl, this.apiNewObject)
+            axios.post(this.apiBaseUrl, this.apiNewObject)
             .then(response=> {
                 console.log(response.status)
                 this.statusMessage = "Added"
@@ -50,7 +51,7 @@ const app = Vue.createApp({
             })
         },
         AxiosDelete: function(){
-            axios.delete(baseUrl + this.deleteId)
+            axios.delete(this.apiBaseUrl + this.deleteId)
             .then(response => {
                 console.log(response.status)
                 this.HttpGet()
@@ -63,7 +64,8 @@ const app = Vue.createApp({
         }
     },
     created () {
-        // this.AxiosGet()
+        this.AxiosGet()
+        console.log("created called")
     }
 });
 
