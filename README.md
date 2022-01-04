@@ -1,5 +1,6 @@
 # VueJsTemplateWithAxiosMethods
-Template for a Vue.js app (non CLI) with implemented axios methods 
+Template for a Vue.js app (non CLI) with implemented axios methods
+Contains references to: Bootstrap 4, Bootstrap Icons, Axios, Vue.js
 
 # How to use
 
