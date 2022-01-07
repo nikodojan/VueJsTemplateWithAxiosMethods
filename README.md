@@ -9,7 +9,7 @@ Contains references to: Bootstrap 4, Bootstrap Icons, Axios, Vue.js
 `>` Clone the repo to your machine (git clone repo-url, or through your IDE)  
 `>` **Customize template:** Rename properties, rewrite methods to fit your app  
 
-**Contents**
+**Contents**  
 `>` Simple Vue.js app, non CLI
 `>` Get, Post, GetById, Delete methods to make API calls (using Axios)
 `>` Sample HTML page
