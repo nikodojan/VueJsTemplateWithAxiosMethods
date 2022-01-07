@@ -20,8 +20,63 @@
 
 <body>
     <div id="app">
-        <h2>{{headline}}</h2>
-         <p>{{ greeting }}</p>
+        <div class="container">
+            <!-- Space for into/headline/title/navbar -->
+            <div class="row justify-content-center">
+                <h2>{{headline}}</h2>
+            </div>
+
+
+            <!-- Section for searching elements -->
+            <div class="row border p-3 my-1">
+                <h5>Search item by id</h5>
+                <div class="row w-100 mx-0">
+                    <div class="d-flex flex-column align-items-start px-1">
+                        <label>Id: </label>
+                        <input id="searchIdInput" type="number" min="0" v-model="searchId" class="form-control">
+                    </div>
+                    <div class="d-flex flex-column justify-content-end px-1">
+                        <button id="searchButton" type="button" @click="AxiosGetById" class="btn btn-primary">Search</button>
+                    </div>                      
+                </div>
+            </div>
+
+            <!-- Section for adding new elements -->
+            <div class="row p-3 border my-1">
+                <h5>Add new item</h5>
+                <div class="row w-100 mx-0">
+                    <div class="d-flex flex-column align-items-start px-1">
+                        <label>New id: </label>
+                        <input id="newIdInput" type="number" min="0" v-model="apiNewObject.id" class="form-control">
+                    </div>
+                    <div class="d-flex flex-column align-items-start px-1">
+                        <label>New item name: </label>
+                        <input id="newNameInput" type="text" v-model="apiNewObject.name" class="form-control">
+                    </div>
+                    <div class="d-flex flex-column align-items-start px-1">
+                        <label>New item quantity: </label>
+                        <input id="newQuantityInput" type="number" min="0" v-model="apiNewObject.quantity" class="form-control">
+                    </div>
+                    <div class="d-flex flex-column justify-content-end px-1">
+                        <button id="addButton" type="button" @click="AxiosPost" class="btn btn-primary">Add new</button>
+                    </div>                
+                </div>
+            </div>
+
+            <!-- Section for the list of all elements -->
+            <div class="row p-3">
+                <table class="table">
+                    <tr v-for="item, index in apiResponseObject">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.quantity}}</td>
+                    </tr>
+                </table>
+            </div>
+            
+
+
+        </div>
     </div>
 
     <!-- Import scripts -->

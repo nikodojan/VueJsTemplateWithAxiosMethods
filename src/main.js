@@ -2,12 +2,15 @@ const app = Vue.createApp({
     data() {
         return {
             headline: "My Vue.js template",
-            greeting: "Hello World!",
 
             // Properties for API
-            apiBaseUrl: "https://webapicar20190326034339.azurewebsites.net/api/cars", // TODO: add base url, incl. trailing /
-            apiResponseObject: [], // TODO: rename 
-            apiNewObject: null, // TODO: rename, evtl. add properties
+            // TODO: add base url, incl. trailing /
+            baseUrl: "https://my-json-server.typicode.com/nikodojan/my-json-server/items/", 
+            // TODO: rename, evtl. add properties
+            apiResponseObject: [], // api response
+            apiNewObject: { // object for posting
+                id: 0, name: "", quantity: 0
+            }, 
             deleteId: 0, 
             searchId: 0,
             statusMessage: ""
@@ -18,7 +21,7 @@ const app = Vue.createApp({
     },
     methods: {
         AxiosGet: function () {
-            axios.get(this.apiBaseUrl)
+            axios.get(this.baseUrl)
             .then(response => {                
                 this.apiResponseObject = response.data
                 console.log(response.status)
@@ -29,7 +32,7 @@ const app = Vue.createApp({
             })
         },
         AxiosGetById: function () {
-            axios.get(this.apiBaseUrl + this.searchId)
+            axios.get(this.baseUrl + this.searchId)
             .then(response=>{
                 console.log(response.status)
                 console.log(response.data) // for debugging              
@@ -38,24 +41,25 @@ const app = Vue.createApp({
             })
             .catch(function(error){
                 console.log(error)
-            })            
+            });            
         },
         AxiosPost: function(){
-            axios.post(this.apiBaseUrl, this.apiNewObject)
+            axios.post(this.baseUrl, this.apiNewObject)
             .then(response=> {
                 console.log(response.status)
-                this.statusMessage = "Added"
+                this.statusMessage = "Element added"
+                this.AxiosGet()
             })
             .catch(function(error) {
                 console.log(error)
             })
         },
         AxiosDelete: function(){
-            axios.delete(this.apiBaseUrl + this.deleteId)
+            axios.delete(this.baseUrl + this.deleteId)
             .then(response => {
                 console.log(response.status)
-                this.HttpGet()
-                this.statusMessage = "Deleted"
+                this.AxiosGet()
+                this.statusMessage = "Element deleted"
             })
             .catch(function(error) {
                 console.log(error)
@@ -65,9 +69,8 @@ const app = Vue.createApp({
     },
     created () {
         this.AxiosGet()
-        console.log("created called")
     }
 });
 
-// mount the app.
+// mount the app, assign the app to a constant for debugging
 const vm = app.mount('#app');
