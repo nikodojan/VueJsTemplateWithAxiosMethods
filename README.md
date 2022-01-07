@@ -10,9 +10,9 @@ Contains references to: Bootstrap 4, Bootstrap Icons, Axios, Vue.js
 `>` **Customize template:** Rename properties, rewrite methods to fit your app  
 
 **Contents**  
-`>` Simple Vue.js app, non CLI
-`>` Get, Post, GetById, Delete methods to make API calls (using Axios)
-`>` Sample HTML page
+`>` Simple Vue.js app, non CLI  
+`>` Get, Post, GetById, Delete methods to make API calls (using Axios)  
+`>` Sample HTML page  
 
 **Properties**
 | Property | Description | TODO |
