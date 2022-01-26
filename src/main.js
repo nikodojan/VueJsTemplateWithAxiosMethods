@@ -12,8 +12,7 @@ const app = Vue.createApp({
                 id: 0, name: "", quantity: 0
             }, 
             deleteId: 0, 
-            searchId: 0,
-            statusMessage: ""
+            searchId: 0
         }
     },
     computed: {
@@ -47,7 +46,6 @@ const app = Vue.createApp({
             axios.post(this.baseUrl, this.apiNewObject)
             .then(response=> {
                 console.log(response.status)
-                this.statusMessage = "Element added"
                 this.AxiosGet()
             })
             .catch(function(error) {
@@ -59,11 +57,9 @@ const app = Vue.createApp({
             .then(response => {
                 console.log(response.status)
                 this.AxiosGet()
-                this.statusMessage = "Element deleted"
             })
             .catch(function(error) {
                 console.log(error)
-                this.statusMessage = error
             })
         }
     },
